@@ -1,31 +1,33 @@
-import robocode.*;
-//import java.awt.Color;
+package chkv;
 
-// API help : http://robocode.sourceforge.net/docs/robocode/robocode/Robot.html
+import chkv.Survival.*;
+import chkv.firing.*;
+import chkv.movement.*;
+import robocode.*;
+import java.awt.Color;
 
 /**
- * BotMain - a robot by (your name here)
+ * Created by HirSlk on 10/9/2015
+ * API help : http://robocode.sourceforge.net/docs/robocode/robocode/Robot.html
  */
+
 public class BotMain extends Robot
 {
-	/**
-	 * run: BotMain's default behavior
-	 */
 	public void run() {
-		// Initialization of the robot should be put here
+		setColors(Color.red,Color.blue,Color.green); // body,gun,radar
 
-		// After trying out your robot, try uncommenting the import at the top,
-		// and the next line:
+        Move move = new Move();
+        Fire fire = new Fire();
+        Survive survive = new Survive();
 
-		// setColors(Color.red,Color.blue,Color.green); // body,gun,radar
-
-		// Robot main loop
 		while(true) {
-			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(360);
-			back(100);
-			turnGunRight(360);
+            try {
+                move.move(this);
+                fire.fire(this);
+                survive.survive(this);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 		}
 	}
 
@@ -51,5 +53,5 @@ public class BotMain extends Robot
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
 		back(20);
-	}	
+	}
 }
