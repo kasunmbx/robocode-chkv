@@ -9,7 +9,7 @@ import chkv.BotMain;
 public class Fire {
 
     public void fire (BotMain bot) {
-        bot.turnGunRight(5);
+        bot.turnGunRight(10);
     }
 
 }
